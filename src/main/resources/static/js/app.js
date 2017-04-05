@@ -3,7 +3,7 @@ var netqApp = angular.module("netqApp", ['ngRoute']);
 netqApp.config(function($routeProvider, $locationProvider){
 	$routeProvider
 		.when("/", {
-			templateUrl: 'view/login.html',
+			templateUrl: 'view/detalhe-professor.html',
 			controller: 'loginController'
 		})
 		.when("/cliente/novo", {

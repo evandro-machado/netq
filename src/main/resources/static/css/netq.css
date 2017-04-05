@@ -2,3 +2,9 @@
 	background-image: url("../dist/img/teacher-login.jpg");
 	background-size: cover;
 }
+
+.miniatura {
+	height: 150px;
+	border: 1px solid #000;
+	margin: 10px 5px 10px 0;
+}

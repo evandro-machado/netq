@@ -1,0 +1,195 @@
+
+<div>
+	<div class="content-header">
+		<h1>Cadastrar Professor</h1>
+	</div>
+	<div class="box box-info">
+	<form id="cadastro" class="form-horizontal">
+			<div class="box-body">
+				<div class="form-group">
+					<div class="col-sm-1"></div>
+				</div>
+				<div class="form-group">
+					<label for="inputName" class="col-sm-2 control-label">Foto
+					<span style="color: red;">(*)</span></label>
+					<div class="col-sm-10">
+						<input type="file" id="fileInput" />
+						<p class="text-muted text-sm">Formato .jpg ou .jpeg de tamanho
+							máximo 1MB</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Nome
+						<span style="color: red;"> (*)</span>
+					</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="inputNome"
+							placeholder="Nome" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Email
+						<span style="color: red;"> (*)</span>
+					</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control"
+							id="inputEmail" placeholder="Email" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Senha
+						<span style="color: red;"> (*)</span>
+					</label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control"
+							id="inputSenha" placeholder="Senha" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Data de Nascimento
+						<span style="color: red;"> (*)</span>
+					</label>
+					<div class="col-sm-10">
+						<div class="input-group">
+							<div class="input-group-addon">
+								<i class="fa fa-calendar"></i>
+							</div>
+							<input type="text" id="dataNasc" class="form-control" onfocus="blur()"
+								style="background-color: #FFFFFF"
+								placeholder="DD/MM/AAAA" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Formação
+						<span style="color: red;"> (*)</span>
+					</label>
+					<div class="col-sm-10">
+						<textarea id="miniCV" class="form-control" ></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Instituição
+						<span style="color: red;"> (*)</span>
+					</label>
+					<div class="col-sm-10">
+						<textarea id="instituicao" class="form-control"></textarea>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Site Pessoal
+						<span style="color: red;"> (*)</span>
+					</label>
+					<div class="col-sm-10">
+						<input type="text" id="idSite" class="form-control"
+							placeholder="http://www.meusite.com.br" />
+					</div>
+				</div>
+				<!--<div class="form-group">-->
+				<!--<h:outputLabel value="Facebook" class="col-sm-2 control-label" />-->
+				<!--<div class="col-sm-10">-->
+<!-- 				<h:inputHidden id="idface" class="form-control"
+					value="#{cadastroProfessorController.professor.idFace}" /> -->
+				<!--<h:message for="idface"/>-->
+				<!--</div>-->
+				<!--</div>-->
+				<div class="form-group">
+					<label id="linkedin"
+						class="col-sm-2 control-label" >LinkedIn</label>
+					<div class="col-sm-10">
+						<input type="text" id="idlinkedin" class="form-control" />
+					</div>
+				</div>
+
+			</div>
+			<!-- /.box-body -->
+			<div class="box-footer">
+				<button value="Cadastrar"
+					class="btn btn-info pull-right">Cadastrar</button>
+			</div>
+			<!-- /.box-footer -->
+		</form>
+
+
+
+		<script>
+                        function handleFileSelect(evt) {
+                        var files = evt.target.files; // FileList object
+
+                                // Loop through the FileList and render image files as thumbnails.
+                                for (var i = 0, f; f = files[i]; i++) {
+
+                        // Only process image files.
+                        if (!f.type.match('image/jpeg')) {
+                        document.getElementById('listminiatura').innerHTML = "";
+                                document.getElementById('cadastro:fileInput').value = null;
+                                document.getElementById('tamanhominiatura').innerHTML = '<div class="alert alert-warning">Formato inválido. Selecione uma imagem ".jpg"</div>';
+                                continue;
+                        }
+
+                        var reader = new FileReader();
+                                // Closure to capture the file information.
+                                reader.onload = (function (theFile) {
+                                return function (e) {
+                                // Render thumbnail.
+//                                var span = document.createElement('span');
+
+                                var output = [];
+                                        for (var i = 0, f; f = files[i]; i++) {
+
+                                var tamanho = (f.size / 1024).toString();
+                                        tamanho = tamanho.split(".");
+                                        var kb = tamanho[0];
+////tamanhho maior q 1mb
+                                        <h:outputText value = "if ((f.size / 1024) > 1024) {" escape = "false" />
+                                        document.getElementById('listminiatura').innerHTML = "";
+                                        output.push('<div class="alert alert-warning">O tamanho da sua foto excede o limite estabelecido (1 MB). Tente novamente</div>');
+                                        document.getElementById('cadastro:fileInput').value = null;
+                                        <h:outputText value = "} else {" />
+                                        document.getElementById('listminiatura').innerHTML = "";
+                                        document.getElementById('listminiatura').innerHTML = ['<img class="miniatura" src="', e.target.result,
+                                        '" title="', escape(theFile.name), '"/>'].join('');
+                                        output.push('<ul><li><strong>', kb, ' Kb </strong></li></ul>');
+                                        <h:outputText value = "}" />
+                                }
+
+                                document.getElementById('tamanhominiatura').innerHTML = '' + output.join('') + '';
+                                };
+                                })(f);
+                                // Read in the image file as a data URL.
+                                reader.readAsDataURL(f);
+                        }
+                        }
+
+                document.getElementById('cadastro:fileInput').addEventListener('change', handleFileSelect, false);</script>
+
+	</div>
+
+
+
+	<script>
+                        var $j = jQuery.noConflict();
+                        $j(function () {
+
+                        var start = new Date();
+                                start.setFullYear(start.getFullYear() - 100);
+                                var end = new Date();
+                                end.setFullYear(end.getFullYear() - 13);
+                                $j('#cadastro\\:dataNasc').datepicker({
+                        dateFormat: 'dd/mm/yy',
+                                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                                dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+                                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                                nextText: 'Próximo',
+                                prevText: 'Anterior',
+                                changeMonth: true,
+                                changeYear: true,
+                                minDate: start,
+                                maxDate: end,
+                                yearRange: - 100 + ':' + end.getFullYear()
+                        });
+                        });</script>
+</div>
